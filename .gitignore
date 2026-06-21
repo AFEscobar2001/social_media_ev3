@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Modelos entrenados (pesados, se regeneran al correr los notebooks)
+*.joblib
+*.pkl
+
+# Variables de entorno / secretos
+.env

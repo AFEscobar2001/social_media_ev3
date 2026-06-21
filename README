@@ -1,0 +1,108 @@
+# Análisis de Sentimiento y Éxito de Publicaciones en Redes Sociales
+
+Proyecto grupal — SCY1101 (Programación para la Ciencia de Datos), Duoc UC, 2026.
+Evaluación Parcial N°2.
+
+Solución de machine learning para una agencia de marketing, sobre un dataset
+de publicaciones en redes sociales. Se trabajan tres insights (clasificación
+de tono, predicción de éxito de un post, detección de fake engagement), cada
+uno con un enfoque supervisado y uno no supervisado.
+
+## Integrantes y carpetas
+
+| Integrante | Carpeta      | Rama       |
+|------------|--------------|------------|
+| Adolfo     | `Adolfo/`    | `adolfo`   |
+| Arelis     | `Arelis/`    | `arelis`   |
+| Felipe     | `Felipe/`    | `felipe`   |
+
+Cada integrante trabaja dentro de su propia carpeta y hace commits en su
+propia rama. La estructura completa se integra en `main`.
+
+## Cómo correr el proyecto (Docker)
+
+No es necesario instalar Python, librerías ni Jupyter en tu máquina. Solo
+necesitas tener [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+instalado y corriendo.
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/<usuario>/<nombre-repo>.git
+cd <nombre-repo>
+
+# 2. Levantar el entorno
+docker compose up --build
+```
+
+Esto construye la imagen (instala `requirements.txt` dentro del contenedor)
+y levanta Jupyter Lab, abriendo directamente **`Resumen.ipynb`** — el
+notebook ejecutable principal del proyecto. En la terminal va a aparecer
+una URL parecida a:
+
+```
+http://127.0.0.1:8888/lab
+```
+
+### ¿Por qué `Resumen.ipynb` y no los notebooks por carpeta?
+
+`Resumen.ipynb` es **autocontenido**: no depende de `src/`, de modelos
+`.joblib` entrenados previamente, ni de haber ejecutado otros notebooks
+antes. Carga el dataset, entrena sus propios modelos y reúne las
+conclusiones de los insights de Emoción, Toxicidad y Señales controlables
+(Adolfo y Arelis) en un solo archivo que corre de principio a fin con
+"Run All". Los notebooks dentro de cada carpeta (`Adolfo/notebooks/`, etc.)
+muestran el desarrollo completo paso a paso, pero `Resumen.ipynb` es el
+punto de entrada recomendado para revisar el proyecto.
+
+Para apagar el entorno: `Ctrl + C` en la terminal, y opcionalmente
+`docker compose down` para liberar el contenedor.
+
+## Estructura del repositorio
+
+```
+.
+├── Adolfo/
+│   ├── data/                  # Dataset usado por este insight
+│   ├── notebooks/             # 5 notebooks numerados (exploración → integración)
+│   ├── src/                   # Módulos: config, preprocesamiento, entrenamiento, evaluación
+│   ├── models/trained_models/ # Modelos entrenados (.joblib)
+│   └── results/                # Métricas, gráficos
+├── Arelis/
+│   └── ...
+├── Felipe/
+│   └── ...
+├── Informe_Tecnico_EP2.docx
+├── Resumen.ipynb
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
+```
+
+## Reproducibilidad
+
+El proyecto usa una semilla global (`SEED = 42`) aplicada en todos los
+splits, modelos y algoritmos de clustering, definida en `Adolfo/src/config.py`.
+
+> **Nota sobre rutas:** el código de Adolfo fue desarrollado originalmente
+> para Google Colab (rutas tipo `/content/proyecto_modelado`). Al correr en
+> Docker, la variable de entorno `PROJECT_ROOT` (definida en
+> `docker-compose.yml`) redirige automáticamente esas rutas a la carpeta
+> correcta dentro del contenedor — no es necesario modificar el código para
+> que funcione localmente.
+
+## Flujo de trabajo en Git (para el grupo)
+
+```bash
+# Cada integrante, antes de empezar a trabajar:
+git checkout <tu-rama>        # ej: git checkout felipe
+git pull origin main          # trae los últimos cambios de la base
+
+# Trabajar normalmente, luego:
+git add Felipe/
+git commit -m "Descripción del avance"
+git push origin felipe
+```
+
+Las ramas se integran a `main` mediante Pull Request en GitHub, para dejar
+registro de revisión y del aporte de cada integrante.
