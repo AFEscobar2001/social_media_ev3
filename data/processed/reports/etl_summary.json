@@ -1,0 +1,32 @@
+{
+  "rows": 12000,
+  "columns": 60,
+  "output_csv": "C:\\Users\\AFEsc\\Downloads\\social_media_ev3-main\\data\\processed\\social_media_ev3_final.csv",
+  "quality_report": "C:\\Users\\AFEsc\\Downloads\\social_media_ev3-main\\data\\processed\\reports\\etl_quality_report.csv",
+  "sources": {
+    "raw_adolfo_csv": "C:\\Users\\AFEsc\\Downloads\\social_media_ev3-main\\Adolfo\\data\\Social_Media_Engagement_Dataset.csv",
+    "enriched_felipe_csv": "C:\\Users\\AFEsc\\Downloads\\social_media_ev3-main\\Felipe\\social_media_enriched (1).csv",
+    "external_campaign_csv": "C:\\Users\\AFEsc\\Downloads\\social_media_ev3-main\\data\\external\\campaign_metadata.csv",
+    "external_api_json_exists": false,
+    "external_sqlite_exists": false
+  },
+  "fake_engagement_posts": 487,
+  "authentic_success_ev3_posts": 584,
+  "leakage_columns_flagged": [
+    "authentic_success_ev3",
+    "comments_count",
+    "composite_score",
+    "engagement_rate",
+    "er_normalized",
+    "er_recalc",
+    "impressions",
+    "likes_count",
+    "log_engagement",
+    "sentiment_label",
+    "sentiment_score",
+    "shares_count",
+    "total_interactions",
+    "toxicity_bin",
+    "toxicity_score"
+  ]
+}

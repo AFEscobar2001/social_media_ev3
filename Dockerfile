@@ -2,7 +2,11 @@ FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+    PIP_NO_CACHE_DIR=1 \
+    PROJECT_ROOT=/app \
+    DATA_DIR=/app/data \
+    RAW_DATA_DIR=/app/data/raw \
+    PROCESSED_DATA_DIR=/app/data/processed
 
 WORKDIR /app
 
@@ -15,11 +19,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN ln -sf Adolfo/data/Social_Media_Engagement_Dataset.csv \
-    Social_Media_Engagement_Dataset.csv
+RUN mkdir -p /app/data/raw /app/data/processed /app/data/external
 
-ENV PROJECT_ROOT=/app/Adolfo
+EXPOSE 8888 8501
 
-EXPOSE 8888
-
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=''", "--LabApp.default_url=/lab/tree/Resumen.ipynb"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--NotebookApp.token=", "--LabApp.default_url=/lab/tree/Resumen.ipynb"]

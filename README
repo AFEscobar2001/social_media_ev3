@@ -1,108 +1,139 @@
-# Análisis de Sentimiento y Éxito de Publicaciones en Redes Sociales
+# Social Media EV3 - Solución End-to-End SCY1101
 
-Proyecto grupal — SCY1101 (Programación para la Ciencia de Datos), Duoc UC, 2026.
-Evaluación Parcial N°2.
+Proyecto grupal para la Evaluación Parcial N°3 de **Programación para la Ciencia de Datos (SCY1101)**. La solución toma el trabajo de modelado realizado en EV2 y lo transforma en una base profesional para EV3: pipeline ETL, dashboard, documentación, Docker y evidencia de colaboración.
 
-Solución de machine learning para una agencia de marketing, sobre un dataset
-de publicaciones en redes sociales. Se trabajan tres insights (clasificación
-de tono, predicción de éxito de un post, detección de fake engagement), cada
-uno con un enfoque supervisado y uno no supervisado.
+## Objetivo del proyecto
 
-## Integrantes y carpetas
+Construir una solución reproducible para analizar publicaciones en redes sociales y apoyar decisiones de marketing. El foco no es solo entrenar modelos, sino demostrar un flujo end-to-end: integrar datos, procesarlos, validar resultados, visualizar hallazgos y ejecutar el proyecto en un entorno Docker.
 
-| Integrante | Carpeta      | Rama       |
-|------------|--------------|------------|
-| Adolfo     | `Adolfo/`    | `adolfo`   |
-| Arelis     | `Arelis/`    | `arelis`   |
-| Felipe     | `Felipe/`    | `felipe`   |
+## Preguntas de negocio
 
-Cada integrante trabaja dentro de su propia carpeta y hace commits en su
-propia rama. La estructura completa se integra en `main`.
+- ¿Qué tono tiene un post según su contenido textual?
+- ¿Qué señales ayudan a detectar engagement atípico o no orgánico?
+- ¿Qué hace que un post tenga potencial de éxito auténtico sin caer en data leakage?
 
-## Cómo correr el proyecto (Docker)
+## Estructura EV3
 
-No es necesario instalar Python, librerías ni Jupyter en tu máquina. Solo
-necesitas tener [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-instalado y corriendo.
+```text
+.
+├── etl/                  # Scripts y notebooks del pipeline de integración y transformación
+├── dashboards/           # Aplicación Streamlit/Dash y visualizaciones interactivas
+├── docs/                 # Manuales, arquitectura, API, despliegue y capturas
+├── api/                  # Código de API REST si se expone el modelo o métricas
+├── docker/               # Archivos auxiliares de Docker y configuración de entorno
+├── tests/                # Pruebas automatizadas del pipeline y reglas de datos
+├── data/                 # Datos originales, externos y procesados para EV3
+├── repo/                 # Evidencia de Git: ramas, PRs, issues, capturas o bitácora
+├── Adolfo/               # Desarrollo del insight de sentimiento/texto
+├── Arelis/               # Desarrollo del insight de engagement orgánico/fake engagement
+├── Felipe/               # Desarrollo del insight de éxito auténtico sin leakage
+├── Resumen.ipynb         # Notebook de síntesis del proyecto
+├── Dockerfile
+├── docker-compose.yml
+└── requirements.txt
+```
+
+## Estado actual
+
+Ya existe una base analítica heredada de EV2:
+
+- Notebooks de modelado supervisado y no supervisado.
+- Dataset principal de redes sociales.
+- Dataset enriquecido con variables derivadas.
+- Informe técnico previo.
+- Docker básico para levantar Jupyter.
+
+Para EV3, el proyecto se está adaptando a una entrega profesional con pipeline, dashboard, documentación, pruebas y despliegue.
+
+## Fuentes de datos previstas
+
+La pauta exige integrar al menos tres fuentes. La propuesta recomendada es:
+
+1. **CSV principal:** dataset de publicaciones de redes sociales.
+2. **CSV enriquecido/procesado:** variables derivadas de engagement, toxicidad, país, fecha y éxito auténtico.
+3. **Fuente externa/API o base SQL:** archivo o servicio complementario para simular costos, objetivos de campaña, calendario comercial o metadata de marcas.
+
+> Nota: si no se usa una API real, se debe documentar claramente la fuente simulada y cargarla mediante un script ETL reproducible.
+
+
+## Ejecutar ETL
+
+Antes de abrir el dashboard final, se recomienda generar el dataset procesado:
 
 ```bash
-# 1. Clonar el repositorio
-git clone https://github.com/<usuario>/<nombre-repo>.git
-cd <nombre-repo>
-
-# 2. Levantar el entorno
-docker compose up --build
+python etl/run_etl.py
 ```
 
-Esto construye la imagen (instala `requirements.txt` dentro del contenedor)
-y levanta Jupyter Lab, abriendo directamente **`Resumen.ipynb`** — el
-notebook ejecutable principal del proyecto. En la terminal va a aparecer
-una URL parecida a:
+Salida principal:
 
+```text
+data/processed/social_media_ev3_final.csv
 ```
+
+Reportes generados:
+
+```text
+data/processed/reports/etl_quality_report.csv
+data/processed/reports/etl_summary.json
+```
+## Ejecución con Docker
+
+### Levantar Jupyter Lab
+
+```bash
+docker compose up --build jupyter
+```
+
+Luego abrir:
+
+```text
 http://127.0.0.1:8888/lab
 ```
 
-### ¿Por qué `Resumen.ipynb` y no los notebooks por carpeta?
+### Levantar dashboard Streamlit
 
-`Resumen.ipynb` es **autocontenido**: no depende de `src/`, de modelos
-`.joblib` entrenados previamente, ni de haber ejecutado otros notebooks
-antes. Carga el dataset, entrena sus propios modelos y reúne las
-conclusiones de los insights de Emoción, Toxicidad y Señales controlables
-(Adolfo y Arelis) en un solo archivo que corre de principio a fin con
-"Run All". Los notebooks dentro de cada carpeta (`Adolfo/notebooks/`, etc.)
-muestran el desarrollo completo paso a paso, pero `Resumen.ipynb` es el
-punto de entrada recomendado para revisar el proyecto.
-
-Para apagar el entorno: `Ctrl + C` en la terminal, y opcionalmente
-`docker compose down` para liberar el contenedor.
-
-## Estructura del repositorio
-
+```bash
+docker compose up --build dashboard
 ```
-.
-├── Adolfo/
-│   ├── data/                  # Dataset usado por este insight
-│   ├── notebooks/             # 5 notebooks numerados (exploración → integración)
-│   ├── src/                   # Módulos: config, preprocesamiento, entrenamiento, evaluación
-│   ├── models/trained_models/ # Modelos entrenados (.joblib)
-│   └── results/                # Métricas, gráficos
-├── Arelis/
-│   └── ...
-├── Felipe/
-│   └── ...
-├── Informe_Tecnico_EP2.docx
-├── Resumen.ipynb
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+
+Luego abrir:
+
+```text
+http://127.0.0.1:8501
+```
+
+## Variables de entorno
+
+El proyecto usa variables para que las rutas no queden amarradas a un computador específico.
+
+```text
+PROJECT_ROOT=/app
+DATA_DIR=/app/data
+RAW_DATA_DIR=/app/data/raw
+PROCESSED_DATA_DIR=/app/data/processed
 ```
 
 ## Reproducibilidad
 
-El proyecto usa una semilla global (`SEED = 42`) aplicada en todos los
-splits, modelos y algoritmos de clustering, definida en `Adolfo/src/config.py`.
+- Python 3.12 en Docker.
+- Dependencias fijadas en `requirements.txt`.
+- Semilla recomendada: `RANDOM_STATE = 42`.
+- Separación entre datos originales, datos procesados, notebooks, scripts y dashboard.
 
-> **Nota sobre rutas:** el código de Adolfo fue desarrollado originalmente
-> para Google Colab (rutas tipo `/content/proyecto_modelado`). Al correr en
-> Docker, la variable de entorno `PROJECT_ROOT` (definida en
-> `docker-compose.yml`) redirige automáticamente esas rutas a la carpeta
-> correcta dentro del contenedor — no es necesario modificar el código para
-> que funcione localmente.
+## Criterios técnicos EV3 cubiertos por esta estructura
 
-## Flujo de trabajo en Git (para el grupo)
+- Pipeline ETL modular.
+- Documentación técnica y guía de despliegue.
+- Dashboard interactivo por audiencia.
+- Docker y docker-compose.
+- Base para testing automatizado.
+- Carpeta para evidenciar colaboración en Git.
 
-```bash
-# Cada integrante, antes de empezar a trabajar:
-git checkout <tu-rama>        # ej: git checkout felipe
-git pull origin main          # trae los últimos cambios de la base
+## Pendientes principales
 
-# Trabajar normalmente, luego:
-git add Felipe/
-git commit -m "Descripción del avance"
-git push origin felipe
-```
-
-Las ramas se integran a `main` mediante Pull Request en GitHub, para dejar
-registro de revisión y del aporte de cada integrante.
+- Implementar scripts reales en `etl/`.
+- Crear dashboard definitivo en `dashboards/`.
+- Agregar tests en `tests/`.
+- Documentar arquitectura en `docs/`.
+- Agregar evidencia de ramas, commits, pull requests e issues en `repo/`.
+- Corregir o reemplazar archivos mal nombrados, por ejemplo CSV que en realidad sea imagen.
