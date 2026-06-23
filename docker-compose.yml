@@ -7,3 +7,18 @@ services:
       - .:/app
     environment:
       - PROJECT_ROOT=/app/Adolfo
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - SEED=42
+      - LOG_LEVEL=INFO
+      - EV2_CSV_PATH=/app/Adolfo/data/Social_Media_Engagement_Dataset.csv
+    command: >
+      uvicorn api.main:app --host 0.0.0.0 --port 8000
