@@ -11,6 +11,7 @@ st.caption("Vista inicial para la defensa EV3: negocio, técnica y operación.")
 
 ROOT = Path(os.environ.get("PROJECT_ROOT", "/app"))
 CANDIDATES = [
+    ROOT / "data" / "processed" / "social_media_ev3_final.csv",
     ROOT / "data" / "processed" / "social_media_enriched.csv",
     ROOT / "Felipe" / "social_media_enriched (1).csv",
     ROOT / "Adolfo" / "data" / "Social_Media_Engagement_Dataset.csv",

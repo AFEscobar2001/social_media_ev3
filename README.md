@@ -55,6 +55,27 @@ La pauta exige integrar al menos tres fuentes. La propuesta recomendada es:
 
 > Nota: si no se usa una API real, se debe documentar claramente la fuente simulada y cargarla mediante un script ETL reproducible.
 
+
+## Ejecutar ETL
+
+Antes de abrir el dashboard final, se recomienda generar el dataset procesado:
+
+```bash
+python etl/run_etl.py
+```
+
+Salida principal:
+
+```text
+data/processed/social_media_ev3_final.csv
+```
+
+Reportes generados:
+
+```text
+data/processed/reports/etl_quality_report.csv
+data/processed/reports/etl_summary.json
+```
 ## Ejecución con Docker
 
 ### Levantar Jupyter Lab
