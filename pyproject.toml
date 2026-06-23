@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+# Le dice a pytest que la raíz del repo (donde está este archivo) es el punto
+# de referencia para los imports, en vez de la carpeta tests/. Así
+# `from api.main import app` funciona sin trucos de sys.path.
+pythonpath = ["."]
+testpaths = ["tests"]
