@@ -14,16 +14,17 @@ services:
       jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
       --NotebookApp.token= --LabApp.default_url=/lab/tree/Resumen.ipynb
 
-  dashboard:
-    build: .
-    ports:
-      - "8501:8501"
-    volumes:
-      - .:/app
-    environment:
-      - PROJECT_ROOT=/app
-      - DATA_DIR=/app/data
-      - RAW_DATA_DIR=/app/data/raw
-      - PROCESSED_DATA_DIR=/app/data/processed
-    command: >
-      streamlit run dashboards/app.py --server.address=0.0.0.0 --server.port=8501
+  api:
+      build:
+        context: .
+        dockerfile: docker/Dockerfile.api
+      ports:
+        - "8000:8000"
+      volumes:
+        - .:/app
+      environment:
+        - SEED=42
+        - LOG_LEVEL=INFO
+        - EV2_CSV_PATH=/app/Adolfo/data/Social_Media_Engagement_Dataset.csv
+      command: >
+        uvicorn api.main:app --host 0.0.0.0 --port 8000
