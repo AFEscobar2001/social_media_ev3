@@ -14,17 +14,41 @@ services:
       jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
       --NotebookApp.token= --LabApp.default_url=/lab/tree/Resumen.ipynb
 
+  dashboard:
+    build: .
+    ports:
+      - "8050:8050"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      - PROJECT_ROOT=/app
+      - DATA_DIR=/app/data
+      - RAW_DATA_DIR=/app/data/raw
+      - PROCESSED_DATA_DIR=/app/data/processed
+    command: >
+      gunicorn --chdir /app -b 0.0.0.0:8050 --workers 2 --timeout 60
+      dashboards.app_dash:server
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8050/').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
   api:
-      build:
-        context: .
-        dockerfile: docker/Dockerfile.api
-      ports:
-        - "8000:8000"
-      volumes:
-        - .:/app
-      environment:
-        - SEED=42
-        - LOG_LEVEL=INFO
-        - EV2_CSV_PATH=/app/Adolfo/data/Social_Media_Engagement_Dataset.csv
-      command: >
-        uvicorn api.main:app --host 0.0.0.0 --port 8000
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - SEED=42
+      - LOG_LEVEL=INFO
+      - EV2_CSV_PATH=/app/Adolfo/data/Social_Media_Engagement_Dataset.csv
+    command: >
+      uvicorn api.main:app --host 0.0.0.0 --port 8000
