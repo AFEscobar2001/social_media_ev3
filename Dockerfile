@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM python:3.12-slim
 
 # Evita que pip y python generen archivos basura / mejora logs
@@ -10,7 +11,8 @@ WORKDIR /app
 # Instalamos primero requirements para aprovechar el cache de Docker:
 # si solo cambia el código, no se reinstalan las librerías de nuevo.
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip install --timeout 120 --retries 10 -r requirements.txt
 
 # Copiamos el resto del proyecto
 COPY . .

@@ -14,3 +14,4 @@ pymongo==4.8.0
 datasets==2.20.0
 dash==2.17.1
 gunicorn==22.0.0
+printf "dash==2.17.1\ngunicorn==22.0.0\n" >> requirements.txt
