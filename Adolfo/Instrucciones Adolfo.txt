@@ -1,0 +1,3 @@
+Para poder ejecutar los cuadernos en orden correlativo, antes de abrir el cuaderno de Adolfo Medina debo ingresar a Google Drive y localizar la carpeta llamada "Adolfo". A continuación, necesito crear un acceso directo en "Mi unidad" (My Drive).
+
+Para lograrlo, simplemente hago clic derecho sobre la carpeta "Adolfo", voy a la opción de organización, selecciono "Agregar acceso directo" y finalmente elijo la carpeta "Mi unidad".

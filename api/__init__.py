@@ -1,0 +1,1 @@
+"""Paquete de la API REST de sentimiento (EV3 SCY1101)."""

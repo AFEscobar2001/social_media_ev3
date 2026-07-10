@@ -1,0 +1,29 @@
+# Bloque de servicio para AÑADIR a tu docker-compose.yml existente
+# (que ya tiene los servicios `jupyter` y `dashboard`).
+#
+# Pega el contenido de `services:` de abajo dentro de tu `services:` actual,
+# manteniendo la indentación. Levanta solo la API con:
+#
+#     docker compose up --build api      # -> http://127.0.0.1:8000/docs
+#
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Monta el repo para que la API encuentre el CSV (o un .joblib) sin
+      # hornearlo en la imagen.
+      - .:/app
+    env_file:
+      - .env
+    environment:
+      - SEED=42
+      - LOG_LEVEL=INFO
+      - EV2_CSV_PATH=/app/Adolfo/data/Social_Media_Engagement_Dataset.csv
+      # Si tienes el modelo serializado, descomenta y la API lo cargará directo:
+      # - EV2_MODEL_PATH=/app/Adolfo/models/trained_models/sentiment_logreg.joblib
+    command: >
+      uvicorn api.main:app --host 0.0.0.0 --port 8000

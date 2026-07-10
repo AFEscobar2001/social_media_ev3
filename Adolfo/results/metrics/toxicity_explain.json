@@ -1,0 +1,331 @@
+{
+  "_meta": {
+    "fuente": "measuringhatespeech (MongoDB Atlas, Ev3)",
+    "umbral_toxico": 0.5,
+    "n_total": 39495,
+    "nota": "Asociacion, NO causalidad. Datos 2019, no verdad universal."
+  },
+  "ranking_y_test": {
+    "ranking": [
+      {
+        "plataforma": "youtube",
+        "score_medio": -0.7155
+      },
+      {
+        "plataforma": "reddit",
+        "score_medio": -0.9343
+      },
+      {
+        "plataforma": "twitter",
+        "score_medio": -1.0794
+      }
+    ],
+    "kruskal_wallis": {
+      "H": 167.3949,
+      "p_valor": 4.473689713359982e-37,
+      "significativo": true
+    },
+    "comparaciones_por_pares": {
+      "reddit_vs_twitter": {
+        "mas_toxico": "reddit",
+        "p_valor": 6.321673852197806e-11,
+        "significativo": true
+      },
+      "reddit_vs_youtube": {
+        "mas_toxico": "youtube",
+        "p_valor": 1.7983653188065985e-12,
+        "significativo": true
+      },
+      "twitter_vs_youtube": {
+        "mas_toxico": "youtube",
+        "p_valor": 1.9137642931906854e-39,
+        "significativo": true
+      }
+    }
+  },
+  "opcion1_distribucion": {
+    "reddit": {
+      "n": 15842,
+      "mean": -0.9343,
+      "median": -0.7,
+      "std": 2.1558,
+      "q25": -2.44,
+      "q75": 0.68,
+      "q95": 2.19,
+      "max": 6.01,
+      "mean_sin_cola": -1.8974
+    },
+    "twitter": {
+      "n": 15475,
+      "mean": -1.0794,
+      "median": -0.82,
+      "std": 2.0273,
+      "q25": -2.42,
+      "q75": 0.39,
+      "q95": 1.83,
+      "max": 6.09,
+      "mean_sin_cola": -1.8055
+    },
+    "youtube": {
+      "n": 8178,
+      "mean": -0.7155,
+      "median": -0.48,
+      "std": 1.9641,
+      "q25": -1.94,
+      "q75": 0.67,
+      "q95": 2.05,
+      "max": 6.3,
+      "mean_sin_cola": -1.5722
+    }
+  },
+  "opcion2_umbral": {
+    "reddit": {
+      "n": 15842,
+      "n_toxicos": 4462,
+      "pct_toxicos": 28.17
+    },
+    "twitter": {
+      "n": 15475,
+      "n_toxicos": 3533,
+      "pct_toxicos": 22.83
+    },
+    "youtube": {
+      "n": 8178,
+      "n_toxicos": 2322,
+      "pct_toxicos": 28.39
+    }
+  },
+  "opcion3_terminos_distintivos": {
+    "reddit": [
+      {
+        "termino": "fucking",
+        "z": 8.654,
+        "frecuencia": 866
+      },
+      {
+        "termino": "cunt",
+        "z": 7.869,
+        "frecuencia": 340
+      },
+      {
+        "termino": "fuck",
+        "z": 6.605,
+        "frecuencia": 1103
+      },
+      {
+        "termino": "cock",
+        "z": 5.707,
+        "frecuencia": 269
+      },
+      {
+        "termino": "faggot",
+        "z": 5.683,
+        "frecuencia": 360
+      },
+      {
+        "termino": "retard",
+        "z": 5.309,
+        "frecuencia": 116
+      },
+      {
+        "termino": "whore",
+        "z": 4.959,
+        "frecuencia": 203
+      },
+      {
+        "termino": "cum",
+        "z": 4.67,
+        "frecuencia": 209
+      },
+      {
+        "termino": "yourself",
+        "z": 4.54,
+        "frecuencia": 166
+      },
+      {
+        "termino": "nigger",
+        "z": 4.471,
+        "frecuencia": 107
+      },
+      {
+        "termino": "tits",
+        "z": 4.389,
+        "frecuencia": 74
+      },
+      {
+        "termino": "little",
+        "z": 4.119,
+        "frecuencia": 225
+      },
+      {
+        "termino": "incel",
+        "z": 4.064,
+        "frecuencia": 61
+      },
+      {
+        "termino": "reddit",
+        "z": 3.86,
+        "frecuencia": 40
+      },
+      {
+        "termino": "slut",
+        "z": 3.627,
+        "frecuencia": 165
+      }
+    ],
+    "twitter": [
+      {
+        "termino": "url",
+        "z": 22.785,
+        "frecuencia": 993
+      },
+      {
+        "termino": "niggas",
+        "z": 10.714,
+        "frecuencia": 267
+      },
+      {
+        "termino": "bitch",
+        "z": 9.791,
+        "frecuencia": 776
+      },
+      {
+        "termino": "nigga",
+        "z": 8.401,
+        "frecuencia": 248
+      },
+      {
+        "termino": "bitches",
+        "z": 7.587,
+        "frecuencia": 226
+      },
+      {
+        "termino": "ass",
+        "z": 7.422,
+        "frecuencia": 657
+      },
+      {
+        "termino": "hoe",
+        "z": 7.052,
+        "frecuencia": 151
+      },
+      {
+        "termino": "realdonaldtrump",
+        "z": 5.864,
+        "frecuencia": 62
+      },
+      {
+        "termino": "findom",
+        "z": 4.897,
+        "frecuencia": 45
+      },
+      {
+        "termino": "hoes",
+        "z": 4.727,
+        "frecuencia": 77
+      },
+      {
+        "termino": "alpha",
+        "z": 4.494,
+        "frecuencia": 49
+      },
+      {
+        "termino": "ain",
+        "z": 4.236,
+        "frecuencia": 71
+      },
+      {
+        "termino": "ilhanmn",
+        "z": 4.146,
+        "frecuencia": 31
+      },
+      {
+        "termino": "paypig",
+        "z": 3.412,
+        "frecuencia": 21
+      },
+      {
+        "termino": "cuckold",
+        "z": 3.349,
+        "frecuencia": 28
+      }
+    ],
+    "youtube": [
+      {
+        "termino": "iran",
+        "z": 7.561,
+        "frecuencia": 114
+      },
+      {
+        "termino": "trump",
+        "z": 6.7,
+        "frecuencia": 143
+      },
+      {
+        "termino": "america",
+        "z": 6.536,
+        "frecuencia": 194
+      },
+      {
+        "termino": "country",
+        "z": 5.38,
+        "frecuencia": 220
+      },
+      {
+        "termino": "deport",
+        "z": 4.837,
+        "frecuencia": 76
+      },
+      {
+        "termino": "usa",
+        "z": 4.62,
+        "frecuencia": 70
+      },
+      {
+        "termino": "illegals",
+        "z": 4.613,
+        "frecuencia": 55
+      },
+      {
+        "termino": "illegal",
+        "z": 4.308,
+        "frecuencia": 58
+      },
+      {
+        "termino": "american",
+        "z": 4.259,
+        "frecuencia": 104
+      },
+      {
+        "termino": "black",
+        "z": 4.119,
+        "frecuencia": 136
+      },
+      {
+        "termino": "back",
+        "z": 4.092,
+        "frecuencia": 230
+      },
+      {
+        "termino": "omar",
+        "z": 3.967,
+        "frecuencia": 45
+      },
+      {
+        "termino": "americans",
+        "z": 3.756,
+        "frecuencia": 68
+      },
+      {
+        "termino": "mexico",
+        "z": 3.59,
+        "frecuencia": 47
+      },
+      {
+        "termino": "border",
+        "z": 3.503,
+        "frecuencia": 48
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "dataset": "Social_Media_Engagement_Dataset.csv (sintetico, 12.000 filas)",
+  "method": "TF-IDF(max_features=5000, ngram_range=(1,2), min_df=2) + LogReg",
+  "seed": 42,
+  "sentiment_task": {
+    "model": {
+      "f1_macro": 0.9359,
+      "accuracy": 0.9333
+    },
+    "baseline_majority": {
+      "f1_macro": 0.192,
+      "accuracy": 0.4046
+    },
+    "baseline_random": {
+      "f1_macro": 0.3226,
+      "accuracy": 0.3613
+    },
+    "has_signal": true
+  },
+  "toxicity_task": {
+    "model": {
+      "f1_macro": 0.5099,
+      "accuracy": 0.51
+    },
+    "baseline_majority": {
+      "f1_macro": 0.3357,
+      "accuracy": 0.5054
+    },
+    "baseline_random": {
+      "f1_macro": 0.5262,
+      "accuracy": 0.5262
+    },
+    "has_signal": false
+  },
+  "interpretation": "Mismo dato, mismo metodo. El sentimiento supera ampliamente al azar (senal real). La toxicidad queda al nivel del azar en accuracy y por debajo del azar en F1-macro (sin senal): la toxicity_score sintetica se asigno independiente del texto, por eso no es modelable."
+}

@@ -1,0 +1,4 @@
+,cv_f1_mean,cv_f1_std,test_accuracy,test_f1_macro,train_time_s
+LogReg,0.9421,0.0024,0.9342,0.9366,16.78
+NaiveBayes,0.9353,0.0056,0.9346,0.9362,5.69
+RandomForest,0.9385,0.0047,0.9279,0.9308,22.3

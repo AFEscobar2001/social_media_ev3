@@ -1,0 +1,12 @@
+2026-06-23 08:21:39,883 | INFO | Iniciando ETL EV3 en C:\Users\AFEsc\Downloads\social_media_ev3-main
+2026-06-23 08:21:39,884 | INFO | Cargando fuente raw_adolfo_csv desde C:\Users\AFEsc\Downloads\social_media_ev3-main\Adolfo\data\Social_Media_Engagement_Dataset.csv
+2026-06-23 08:21:39,995 | INFO | Cargando fuente enriched_felipe_csv desde C:\Users\AFEsc\Downloads\social_media_ev3-main\Felipe\social_media_enriched (1).csv
+2026-06-23 08:21:40,177 | INFO | No existe fuente externa de campañas. Creando fuente provisional: C:\Users\AFEsc\Downloads\social_media_ev3-main\data\external\campaign_metadata.csv
+2026-06-23 08:21:40,784 | INFO | ETL finalizado. Filas=12000 Columnas=60
+2026-06-23 08:21:40,784 | INFO | Archivo final: C:\Users\AFEsc\Downloads\social_media_ev3-main\data\processed\social_media_ev3_final.csv
+2026-06-23 08:22:19,046 | INFO | Iniciando ETL EV3 en C:\Users\AFEsc\Downloads\social_media_ev3-main
+2026-06-23 08:22:19,046 | INFO | Cargando fuente raw_adolfo_csv desde C:\Users\AFEsc\Downloads\social_media_ev3-main\Adolfo\data\Social_Media_Engagement_Dataset.csv
+2026-06-23 08:22:19,176 | INFO | Cargando fuente enriched_felipe_csv desde C:\Users\AFEsc\Downloads\social_media_ev3-main\Felipe\social_media_enriched (1).csv
+2026-06-23 08:22:19,345 | INFO | Fuente externa de campañas encontrada: C:\Users\AFEsc\Downloads\social_media_ev3-main\data\external\campaign_metadata.csv
+2026-06-23 08:22:19,866 | INFO | ETL finalizado. Filas=12000 Columnas=60
+2026-06-23 08:22:19,866 | INFO | Archivo final: C:\Users\AFEsc\Downloads\social_media_ev3-main\data\processed\social_media_ev3_final.csv

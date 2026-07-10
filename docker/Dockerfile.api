@@ -1,0 +1,28 @@
+# Imagen del servicio API REST de sentimiento (EV3 SCY1101).
+# Contenedor liviano: instala solo el núcleo (FastAPI + sklearn). tweetnlp es
+# opcional y NO se instala aquí por defecto para mantener la imagen pequeña.
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# Instalar dependencias primero (mejor cacheo de capas)
+COPY requirements-api.txt .
+RUN pip install --no-cache-dir -r requirements-api.txt
+
+# Copiar el código de la API (el CSV/modelo se montan como volumen en compose)
+COPY api/ ./api/
+
+# Configuración por variables de entorno (sobreescribibles en docker-compose)
+ENV EV2_CSV_PATH=/app/Adolfo/data/Social_Media_Engagement_Dataset.csv \
+    LOG_LEVEL=INFO \
+    SEED=42
+
+EXPOSE 8000
+
+# Healthcheck: el endpoint /health responde 200 cuando el modelo está cargado.
+# Usamos Python en vez de curl para no depender de apt-get (evita fallos de
+# red contra los repositorios de Debian).
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)" || exit 1
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,81 @@
+{
+  "source": "Ev3.measuringhatespeech",
+  "score_column": "hate_speech_score",
+  "score_note": "hate_speech_score: mayor = mas toxico (escala IRT, puede ser negativa)",
+  "platform_map_used": {
+    "0": "reddit",
+    "1": "reference",
+    "2": "twitter",
+    "3": "youtube"
+  },
+  "reference_code_excluded": 1,
+  "n_comments_analyzed": 39495,
+  "descriptive_by_platform": {
+    "reddit": {
+      "n": 15842,
+      "mean": -0.9343,
+      "median": -0.7,
+      "std": 2.1558,
+      "min": -8.34,
+      "max": 6.01
+    },
+    "twitter": {
+      "n": 15475,
+      "mean": -1.0794,
+      "median": -0.82,
+      "std": 2.0273,
+      "min": -8.28,
+      "max": 6.09
+    },
+    "youtube": {
+      "n": 8178,
+      "mean": -0.7155,
+      "median": -0.48,
+      "std": 1.9641,
+      "min": -8.07,
+      "max": 6.3
+    }
+  },
+  "statistical_tests": {
+    "kruskal_wallis": {
+      "h_statistic": 167.3949,
+      "p_value": 4.474e-37,
+      "significant_0_05": true
+    },
+    "pairwise_mann_whitney": [
+      {
+        "pair": "reddit_vs_twitter",
+        "u_statistic": 127805449.5,
+        "p_value_uncorrected": 6.322e-11,
+        "p_value_holm": 6.322e-11,
+        "significant_holm_0_05": true
+      },
+      {
+        "pair": "reddit_vs_youtube",
+        "u_statistic": 61188072.0,
+        "p_value_uncorrected": 1.798e-12,
+        "p_value_holm": 3.597e-12,
+        "significant_holm_0_05": true
+      },
+      {
+        "pair": "twitter_vs_youtube",
+        "u_statistic": 56713822.5,
+        "p_value_uncorrected": 1.914e-39,
+        "p_value_holm": 5.741e-39,
+        "significant_holm_0_05": true
+      }
+    ]
+  },
+  "business_reading": {
+    "ranking_most_to_least_toxic": [
+      "youtube",
+      "reddit",
+      "twitter"
+    ],
+    "most_toxic_platform": "youtube",
+    "least_toxic_platform": "twitter",
+    "all_means_negative": true,
+    "hypothesis_twitter_most_toxic_confirmed": false,
+    "global_difference_significant": true
+  }
+}

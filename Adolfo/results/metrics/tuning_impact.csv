@@ -1,0 +1,4 @@
+modelo,cv_f1,test_f1
+Base,,0.9366
+GridSearchCV,0.9424,0.937
+RandomizedSearchCV,0.9417,0.9361
