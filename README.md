@@ -137,3 +137,72 @@ PROCESSED_DATA_DIR=/app/data/processed
 - Documentar arquitectura en `docs/`.
 - Agregar evidencia de ramas, commits, pull requests e issues en `repo/`.
 - Corregir o reemplazar archivos mal nombrados, por ejemplo CSV que en realidad sea imagen.
+## Dashboard crítico de toxicidad
+
+El dashboard principal es `dashboards/app_dash.py`. La pregunta original se mantiene como punto de partida:
+
+> ¿Es Twitter más tóxico que Reddit y YouTube usando datos reales?
+
+El resultado refuta esa hipótesis: en el corpus Measuring Hate Speech, YouTube aparece con mayor toxicidad relativa, seguido de Reddit y luego Twitter. La conclusión final no es que YouTube sea universalmente más tóxico, sino que el ranking abre una discusión sobre corpus, comunidades, diseño de interacción, moderación y posibles riesgos para marcas.
+
+Antes de ejecutar el dashboard, generar las métricas consolidadas:
+
+```bash
+python etl/generate_dashboard_metrics.py
+```
+
+Ejecutar localmente:
+
+```bash
+python dashboards/app_dash.py
+```
+
+Abrir:
+
+```text
+http://127.0.0.1:8050
+```
+
+Documentación específica:
+
+- `docs/dashboard.md`
+- `docs/architecture/README.md`
+
+Comandos de verificación recomendados:
+
+```bash
+python etl/generate_dashboard_metrics.py
+python dashboards/app_dash.py
+pytest -v
+docker compose up --build
+```
+
+<!-- storytelling-presentacion -->
+
+## Presentación final: storytelling del dashboard
+
+El dashboard principal (`dashboards/app_dash.py`) ahora incluye **Modo Presentación**, una vista diseñada para usar el dashboard como guion oral de la exposición final.
+
+La narrativa sigue este hilo:
+
+1. **Intuición:** el equipo esperaba que Twitter fuera la plataforma más tóxica.
+2. **Conflicto:** el dataset sintético servía para construir el sistema, pero no bastaba para concluir toxicidad real.
+3. **Giro:** en el corpus Measuring Hate Speech, YouTube aparece con mayor toxicidad relativa.
+4. **Discusión:** el ranking no prueba causalidad ni una verdad universal; abre hipótesis sobre corpus, comunidades, moderación y diseño de interacción.
+5. **Aprendizaje:** una conclusión responsable reconoce límites y datos faltantes.
+
+Documentos de apoyo:
+
+- `docs/storytelling_presentacion_final.md`
+- `docs/storytelling_presentacion_final.docx`
+- `docs/presentation_storytelling.md`
+- `docs/dashboard.md`
+
+Comandos recomendados para la demo:
+
+```bash
+python etl/generate_dashboard_metrics.py
+python dashboards/app_dash.py
+pytest -v
+docker compose up --build
+```
