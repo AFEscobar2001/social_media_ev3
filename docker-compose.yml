@@ -20,8 +20,6 @@ services:
       - "8050:8050"
     volumes:
       - .:/app
-    env_file:
-      - .env
     environment:
       - PROJECT_ROOT=/app
       - DATA_DIR=/app/data

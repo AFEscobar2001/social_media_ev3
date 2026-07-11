@@ -1,6 +1,5 @@
 """
 app_dash.py — Dashboard EV3 · Auditoría de toxicidad multiplataforma (Plotly Dash)
-============================================================================
 Dos audiencias, una sola pregunta de investigación en el centro:
 
     ¿Es una red social más tóxica que otra? ¿Y por qué?
@@ -15,7 +14,6 @@ solo el contexto de volumen de negocio.
 
 Ejecutar:
     python3 dashboards/app_dash.py        # http://127.0.0.1:8050
-============================================================================
 """
 import base64
 import json
