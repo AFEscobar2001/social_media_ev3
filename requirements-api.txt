@@ -6,6 +6,7 @@ pydantic==2.9.2
 scikit-learn==1.5.1
 pandas==2.2.2
 joblib==1.4.2
+gunicorn
 
 # --- OPCIONAL: modelo de referencia real (endpoints /compare y /benchmark) ---
 # tweetnlp arrastra torch + transformers (~varios cientos de MB) y descarga el
