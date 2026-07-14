@@ -28,7 +28,7 @@ RUN ln -sf Adolfo/data/Social_Media_Engagement_Dataset.csv \
 # (reemplaza la ruta de Colab /content/proyecto_modelado)
 ENV PROJECT_ROOT=/app/Adolfo
 
-EXPOSE 8050
+EXPOSE 10000
 
 # Levanta Jupyter Lab accesible desde fuera del contenedor, sin token
 # (entorno de desarrollo local, no producción).
@@ -38,4 +38,4 @@ EXPOSE 8050
 # antes) y reúne las conclusiones de los insights de Adolfo y Arelis en un
 # solo archivo. Por eso Jupyter lo abre directo al levantar el contenedor,
 # en vez de mostrar solo el listado de carpetas.
-CMD ["python3", "--bind", "0.0.0.0:10000", "dashboards.app_dash:server"]
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "dashboards.app_dash:server"]
