@@ -38,4 +38,4 @@ EXPOSE 8050
 # antes) y reúne las conclusiones de los insights de Adolfo y Arelis en un
 # solo archivo. Por eso Jupyter lo abre directo al levantar el contenedor,
 # en vez de mostrar solo el listado de carpetas.
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "dashboards.app_dash:server"]
+CMD ["python3", "--bind", "0.0.0.0:10000", "dashboards.app_dash:server"]
